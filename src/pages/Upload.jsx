@@ -1,59 +1,95 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Upload.css"
+import "./Upload.css";
 import api from "../api";
 
+function Upload() {
+    const [file, setFile] = useState(null);
+    const [dataCode, setDataCode] = useState("");
+    const [loading, setLoading] = useState(false);
 
-
-function Upload(){
-    const[file,setFile] = useState(null);
-    const [dataCode,setDataCode] = useState('');
-    const handleFileChange = (e)=>{
+    const handleFileChange = (e) => {
         setFile(e.target.files[0]);
-    }
-    
+    };
 
-    const uploadData = async()=>{
-        try{
- 
-        const formData = new FormData();
-        formData.append("uploadfile", file);//fieldname,actualfile
-      
+    const uploadData = async () => {
+        try {
+            setLoading(true);
+            setDataCode("");
 
-        const response  = await api.post("/uploads",
-             formData) 
-        
-           console.log(response.data.share_code);
-           const share_code = response.data.share_code;
-          setDataCode(share_code);
+            const formData = new FormData();
+            formData.append("uploadfile", file);
 
-    }catch(error){
-        console.log("ERROR:", error);
-        console.log("STATUS:", error.response?.status);
-        console.log("SERVER RESPONSE:", error.response?.data);
-    }
+            const response = await api.post("/uploads", formData);
+
+            console.log(response.data.share_code);
+
+            const share_code = response.data.share_code;
+            setDataCode(share_code);
+
+        } catch (error) {
+            console.log("ERROR:", error);
+            console.log("STATUS:", error.response?.status);
+            console.log("SERVER RESPONSE:", error.response?.data);
+
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="upload-page">
+            <div className="upload-card">
+
+                <div className="upload-header">
+                    <div className="upload-icon">📤</div>
+                    <h1>Upload File</h1>
+                    <p>Upload your file and generate a share code.</p>
+                </div>
+
+                <div className="upload-form">
+
+                    <label htmlFor="file">Choose a file</label>
+
+                    <input
+                        id="file"
+                        type="file"
+                        name="myfile1"
+                        onChange={handleFileChange}
+                    />
+
+                    <button
+                        onClick={uploadData}
+                        disabled={!file || loading}
+                    >
+                        {loading ? "Uploading..." : "Upload File"}
+                    </button>
+
+                    {loading && (
+                        <div className="loader">
+                            <div className="spinner"></div>
+                            <p>Uploading file and generating share code...</p>
+                        </div>
+                    )}
+
+                </div>
+
+                {dataCode && (
+                    <div className="share-code">
+                        <p>Your Share Code</p>
+
+                        <h2>{dataCode}</h2>
+
+                        <span>
+                            Share this code with the person you want to send the file to.
+                        </span>
+                    </div>
+                )}
+
+            </div>
+        </div>
+    );
 }
 
- 
-
-
-
-    return(
-       <div className="upload-page">
-         <div className="upload-card">
-             <div className="upload-header">
-                 <div className="upload-icon"> 📤 </div>
-                  <h1>Upload File</h1> 
-                  <p> Upload your file and generate a share code. </p> 
-                  </div> <div className="upload-form">
-                     <label htmlFor="file"> Choose a file </label>
-                      <input id="file" type="file" name="myfile1" onChange={handleFileChange} /> 
-                      <button onClick={uploadData} disabled={!file} > Upload File </button>
-                       </div> {dataCode && ( <div className="share-code"> <p>Your Share Code</p>
-                        <h2>{dataCode}</h2> <span> Share this code with the person you want to send the file to. </span> </div> )}
-                         </div>
-                          </div>
-    )
-}
 export default Upload;
+
