@@ -18,7 +18,7 @@ function Register() {
       console.log(response.data);
       const token = response.data.token;
       localStorage.setItem("token", token);
-      navigate('/');
+      navigate('/login');
 
 
    }
