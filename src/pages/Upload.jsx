@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Upload.css"
@@ -9,7 +9,6 @@ import api from "../api";
 function Upload(){
     const[file,setFile] = useState(null);
     const [dataCode,setDataCode] = useState('');
-     const navigate = useNavigate();
     const handleFileChange = (e)=>{
         setFile(e.target.files[0]);
     }
@@ -20,14 +19,13 @@ function Upload(){
  
         const formData = new FormData();
         formData.append("uploadfile", file);//fieldname,actualfile
-        const token = localStorage.getItem("token");
+      
 
         const response  = await api.post("/uploads",
              formData) 
         
            console.log(response.data.share_code);
            const share_code = response.data.share_code;
-        //   navigate(`/retrieve/${share_code}`);
           setDataCode(share_code);
 
     }catch(error){

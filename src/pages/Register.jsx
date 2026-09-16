@@ -10,7 +10,7 @@ function Register() {
    const navigate = useNavigate();
 
    const handelRegister = async () => {
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await axios.post('https://filesharing-1-ksam.onrender.com/register', {
          name: name,
          email: email,
          password: password
