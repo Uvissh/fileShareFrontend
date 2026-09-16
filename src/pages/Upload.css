@@ -1,0 +1,130 @@
+
+.upload-page {
+    min-height: 100vh;
+    background: #f5f7fb;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Upload Card */
+
+.upload-card {
+    width: 450px;
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Header */
+
+.upload-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.upload-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.upload-header h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.upload-header p {
+    color: #6b7280;
+}
+
+
+/* Upload Form */
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-form label {
+    font-weight: 600;
+}
+
+.upload-form input[type="file"] {
+    padding: 12px;
+
+    border: 1px dashed #9ca3af;
+    border-radius: 8px;
+
+    background: #f9fafb;
+
+    cursor: pointer;
+}
+
+
+/* Button */
+
+.upload-form button {
+    padding: 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.upload-form button:hover {
+    background: #1d4ed8;
+}
+
+.upload-form button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+
+/* Share Code */
+
+.share-code {
+    margin-top: 30px;
+    padding: 20px;
+
+    text-align: center;
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+}
+
+.share-code p {
+    margin-bottom: 8px;
+    color: #166534;
+    font-weight: 600;
+}
+
+.share-code h2 {
+    margin: 5px 0 10px;
+
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.share-code span {
+    font-size: 14px;
+    color: #4b5563;
+}
+
