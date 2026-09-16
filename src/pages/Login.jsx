@@ -5,8 +5,8 @@ import  "./Login.css"
 
 
 function Login(){
-    const[email,setEmail] = useState("radha12@gmail.com");
-    const[password,setPassword] = useState("Radha@12345");
+    const[email,setEmail] = useState();
+    const[password,setPassword] = useState();
     const  navigate = useNavigate()
 
     const handelLogin =async()=>{
