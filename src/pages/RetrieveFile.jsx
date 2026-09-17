@@ -14,12 +14,14 @@ function RetrieveFile(){
     
     
     const getRetrieveFile = async()=>{
-        const token = localStorage.getItem("token");
+        
 const response = await api.get(`/${code}`)
 
 
 console.log(response.data.data);
         setRetriveData(response.data.data);
+        console.log("format:", retriveData.format);
+console.log("url:", retriveData.file_url);
 
 
     }
@@ -40,7 +42,7 @@ console.log(response.data.data);
                            </div>  {retriveData && ( <div className="retrieved-file">
                              <h2>Retrieved File</h2>  {retriveData.resource_type === "image" && ( <img src={retriveData.file_url} alt="Retrieved file" /> )} 
                              {retriveData.resource_type === "video" && ( <video controls> <source src={retriveData.file_url} /> Your browser does not support video. </video> )} 
-                              {retriveData.format === "pdf" && ( <iframe src={retriveData.file_url} title="Retrieved PDF" /> )}
+                              {retriveData.format?.toLowerCase() === "pdf" && ( <iframe src={retriveData.file_url} title="Retrieved PDF" /> )}
                                {retriveData.resource_type !== "image" && retriveData.resource_type !== "video" && retriveData.format !== "pdf" && ( <a href={retriveData.file_url} target="_blank" rel="noreferrer" > Open File </a> )} </div> )} 
                                </div> 
                                </div>
