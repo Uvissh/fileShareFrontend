@@ -8,16 +8,20 @@ function Download(){
   
 const[code,SetCode] = useState();
     const DownloadFile =async()=>{
-        const token =  localStorage.getItem("token");
          const response =  await api.get(`/download/${code}`,{
          
              responseType:"blob"
          })
+          const userID = await api.get(`/profile`)
+          console.log("UserID",userID.data.data.id);
+          
+          
+          
 
          const url  = window.URL.createObjectURL(response.data);
 const link =  document.createElement('a');
 link.href = url;
-link.download = "download-file"
+link.download = `${userID}download-file`
 link.click();
 window.URL.revokeObjectURL(url);
          console.log(response.data);
