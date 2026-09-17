@@ -21,7 +21,7 @@ const[code,SetCode] = useState();
          const url  = window.URL.createObjectURL(response.data);
 const link =  document.createElement('a');
 link.href = url;
-link.download = `${userID}download-file`
+link.download = `${userID.data.data.id}_download-file`
 link.click();
 window.URL.revokeObjectURL(url);
          console.log(response.data);
